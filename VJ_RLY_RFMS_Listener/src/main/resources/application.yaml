@@ -1,0 +1,32 @@
+tcp:
+  server:
+    port: 8888
+
+spring:
+  application:
+    name: VJ_RLY_RFMS_Listener
+
+  main:
+    web-application-type: none
+
+  profiles:
+    active: prod
+
+  # Redis Configuration
+  redis:
+    host: 192.168.1.14    # localhost
+    port: 6379
+    timeout: 60000ms
+
+  cache:
+    type: redis
+    redis:
+      time-to-live: 1800000 # 30 minutes default
+
+  # Jackson Configuration (for JSON serialization)
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    deserialization:
+      fail-on-unknown-properties: false
+    default-property-inclusion: non_null

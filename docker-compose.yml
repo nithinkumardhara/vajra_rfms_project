@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+  redis:
+    image: redis:7
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+  vj_rly_rfms_listener:
+    build:
+      context: ./VJ_RLY_RFMS_Listener
+    container_name: vj_rly_rfms_listener
+    ports:
+      - "8888:8888"
+    depends_on:
+      - redis
+
+  vj_rly_rfms_rest_apis:
+    build:
+      context: ./VJ_RLY_RFMS_REST_APIs
+    container_name: vj_rly_rfms_rest_apis
+    ports:
+      - "8889:8889"
+    depends_on:
+      - redis
