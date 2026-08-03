@@ -52,7 +52,7 @@ public class FleetAnalyticsService {
 
         analytics.setCurrentLatitude(lastRecord.getLatitude());
         analytics.setCurrentLongitude(lastRecord.getLongitude());
-        analytics.setMovementStatus(lastRecord.getMovementStatus());
+        analytics.setMovementStatus(lastRecord.getFleetState());
 
         // Distance Calculation
         Double totalDistance = DistanceCalculateUtil.calculateDistance(gpsDataList);
@@ -83,7 +83,7 @@ public class FleetAnalyticsService {
 
             long durationSeconds = ChronoUnit.SECONDS.between(current.getPacketTimestamp(), previous.getPacketTimestamp());
 
-            String status = current.getMovementStatus() != null ? current.getMovementStatus().trim().toUpperCase() : "";
+            String status = current.getFleetState() != null ? current.getFleetState().trim().toUpperCase() : "";
 
             switch (status) {
                 case "MOVING":
@@ -129,7 +129,7 @@ public class FleetAnalyticsService {
                             .noOfSatellites(gps.getNoOfSatellites())
                             .pdop(gps.getPdop())
                             .hdop(gps.getHdop())
-                            .movementStatus(gps.getMovementStatus())
+                            .movementStatus(gps.getFleetState())
                             .packetTimestamp(gps.getPacketTimestamp())
                             .build())
                     .toList();
@@ -203,7 +203,7 @@ public class FleetAnalyticsService {
                             deviceId, startTime, endTime);
 
             long idleTime = gpsDataList.stream()
-                    .filter(g -> "IDLE".equals(g.getMovementStatus()))
+                    .filter(g -> "IDLE".equals(g.getFleetState()))
                     .count() * 10; // Assuming 10-second intervals
 
             analysis.setIdleTime(idleTime);

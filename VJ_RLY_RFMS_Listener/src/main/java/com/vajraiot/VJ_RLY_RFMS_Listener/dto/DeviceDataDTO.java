@@ -22,6 +22,7 @@ public class DeviceDataDTO {
     private String simNumber;
     private Integer signalStrength;
     private LocalDate installationDate;
+    private String fleetState;
 
     // Sections
     private GeneralDataDTO generalData;

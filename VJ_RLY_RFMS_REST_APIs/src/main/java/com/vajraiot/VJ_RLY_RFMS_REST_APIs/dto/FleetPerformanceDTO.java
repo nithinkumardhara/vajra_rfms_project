@@ -5,15 +5,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class DashboardSummaryDTO {
+public class FleetPerformanceDTO {
 
-    private Long communicating;
-    private Long nonCommunicating;
-    private Long moving;
-    private Long stopped;
-    private Long idle;
+    private String deviceId;
+    private String reportRange;
+    private Double totalDistance;
+    private List<FleetDistanceDTO> fleetDistances;
 }

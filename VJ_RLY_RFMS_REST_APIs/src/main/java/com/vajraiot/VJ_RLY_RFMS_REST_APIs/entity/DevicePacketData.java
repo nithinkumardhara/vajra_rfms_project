@@ -161,4 +161,7 @@ public class DevicePacketData {
     @Column(name = "server_timestamp", nullable = false)
     private LocalDateTime serverTimestamp;
 
+    @Column(name = "fleet_state", length = 20)
+    private String fleetState; // MOVING, IDLE, STOPPED
+
 }

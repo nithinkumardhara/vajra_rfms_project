@@ -50,7 +50,7 @@ public class DeviceFuelData {
     private Double outFlow;
 
     @Column(name = "net_flow")
-    private Double netFlow; // Calculated: inFlow - outFlow
+    private Double netFlow;
 
     @Column(name = "run_hours")
     private Double runHours;

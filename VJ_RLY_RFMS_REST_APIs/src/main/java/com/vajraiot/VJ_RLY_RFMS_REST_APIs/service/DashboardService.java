@@ -35,19 +35,15 @@ public class DashboardService {
 
             // Count by movement status from snapshots
             long moving = snapshots.stream()
-                    .filter(s -> "MOVING".equals(s.getMovementStatus()))
+                    .filter(s -> "MOVING".equals(s.getFleetState()))
                     .count();
 
             long stopped = snapshots.stream()
-                    .filter(s -> "STOPPED".equals(s.getMovementStatus()))
+                    .filter(s -> "STOPPED".equals(s.getFleetState()))
                     .count();
 
             long idle = snapshots.stream()
-                    .filter(s -> "IDLE".equals(s.getMovementStatus()))
-                    .count();
-
-            long hibernating = snapshots.stream()
-                    .filter(s -> "HIBERNATING".equals(s.getMovementStatus()))
+                    .filter(s -> "IDLE".equals(s.getFleetState()))
                     .count();
 
             return DashboardSummaryDTO.builder()
@@ -56,7 +52,6 @@ public class DashboardService {
                     .moving(moving)
                     .stopped(stopped)
                     .idle(idle)
-                    .hibernating(hibernating)
                     .build();
 
         } catch (Exception e) {
@@ -139,28 +134,21 @@ public class DashboardService {
         switch (status.toUpperCase()) {
             case "MOVING":
                 deviceIds = snapshots.stream()
-                        .filter(s -> "MOVING".equals(s.getMovementStatus()))
+                        .filter(s -> "MOVING".equals(s.getFleetState()))
                         .map(DeviceDataSnapshot::getDeviceId)
                         .collect(Collectors.toList());
                 break;
 
             case "STOPPED":
                 deviceIds = snapshots.stream()
-                        .filter(s -> "STOPPED".equals(s.getMovementStatus()))
+                        .filter(s -> "STOPPED".equals(s.getFleetState()))
                         .map(DeviceDataSnapshot::getDeviceId)
                         .collect(Collectors.toList());
                 break;
 
             case "IDLE":
                 deviceIds = snapshots.stream()
-                        .filter(s -> "IDLE".equals(s.getMovementStatus()))
-                        .map(DeviceDataSnapshot::getDeviceId)
-                        .collect(Collectors.toList());
-                break;
-
-            case "HIBERNATING":
-                deviceIds = snapshots.stream()
-                        .filter(s -> "HIBERNATING".equals(s.getMovementStatus()))
+                        .filter(s -> "IDLE".equals(s.getFleetState()))
                         .map(DeviceDataSnapshot::getDeviceId)
                         .collect(Collectors.toList());
                 break;
@@ -191,7 +179,7 @@ public class DashboardService {
             enriched.put("fuelLevel", s.getFuelLevel());
             enriched.put("fuelLevelPercentage", s.getFuelLevelPercentage());
             enriched.put("fuelHeight", s.getFuelHeight());
-            enriched.put("status", s.getMovementStatus());
+            enriched.put("status", s.getFleetState());
             enriched.put("temperature", s.getTemperature());
             enriched.put("runHours", s.getRunHours());
         }

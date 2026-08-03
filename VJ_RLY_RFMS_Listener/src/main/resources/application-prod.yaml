@@ -4,7 +4,7 @@ spring:
       on-profile: prod
 
   datasource:
-    url: jdbc:postgresql://192.168.1.14:5432/VJ_RLY_RFMS_TEST
+    url: jdbc:postgresql://192.168.1.14:5432/VJ_RLY_RFMS_TEST2
     username: vajra
     password: Vajra@123
     driver-class-name: org.postgresql.Driver

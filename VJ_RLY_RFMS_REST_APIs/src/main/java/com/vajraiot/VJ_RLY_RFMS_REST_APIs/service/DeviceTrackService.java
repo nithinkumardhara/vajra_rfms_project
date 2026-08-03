@@ -36,7 +36,7 @@ public class DeviceTrackService {
                 response.put("latitude", data.getLatitude());
                 response.put("longitude", data.getLongitude());
                 response.put("speed", data.getSpeed());
-                response.put("status", data.getMovementStatus());
+                response.put("status", data.getFleetState());
                 response.put("heading", data.getHeading());
                 response.put("fuelLevel", data.getFuelLevel());
                 response.put("IgnitionOn", data.getIsIgnitionON());
@@ -67,7 +67,7 @@ public class DeviceTrackService {
                                 point.put("latitudeDirection", loc.getLatitudeDirection());
                                 point.put("longitudeDirection", loc.getLongitudeDirection());
                                 point.put("speed", loc.getSpeed());
-                                point.put("status", loc.getMovementStatus());
+                                point.put("status", loc.getFleetState());
                                 point.put("heading", loc.getHeading());
                                 point.put("timestamp", loc.getPacketTimestamp());
                                 return point;

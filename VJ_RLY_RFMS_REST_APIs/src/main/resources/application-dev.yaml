@@ -4,7 +4,7 @@ spring:
       on-profile: dev
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/VJ_RLY_RFMS
+    url: jdbc:postgresql://localhost:5432/VJ_RLY_RFMS2
     username: postgres
     password: root
     driver-class-name: org.postgresql.Driver

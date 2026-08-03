@@ -60,8 +60,8 @@ public class DeviceGPSData {
     @Column(name = "hdop") // Horizontal Dilution of Precision
     private Double hdop;
 
-    @Column(name = "movement_status", length = 20)
-    private String movementStatus; // MOVING, IDLE, STOPPED
+    @Column(name = "fleet_state", length = 20)
+    private String fleetState; // MOVING, IDLE, STOPPED
 
     @Column(name = "server_timestamp", nullable = false)
     private LocalDateTime serverTimestamp;

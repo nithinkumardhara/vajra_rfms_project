@@ -9,5 +9,4 @@ public class VjRlyRfmsListenerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(VjRlyRfmsListenerApplication.class, args);
 	}
-
 }

@@ -152,7 +152,7 @@ public class DataPersistenceService {
                 snapshot.setSpeed(dto.getGpsData().getSpeed());
                 snapshot.setHeading(dto.getGpsData().getHeading());
 
-                snapshot.setMovementStatus(gpsData.getMovementStatus());
+                snapshot.setFleetState(gpsData.getFleetState());
             }
 
             if (dto.getFuelData() != null) {

@@ -25,6 +25,7 @@ public class EntityMapper {
                     .signalStrength(dto.getSignalStrength())
                     .packetTimestamp(dto.getPacketTimeStamp())
                     .serverTimestamp(LocalDateTime.now())
+                    .fleetState(calculateFleetState(dto))
                     .build();
 
             if (dto.getGeneralData() != null) {
@@ -116,24 +117,7 @@ public class EntityMapper {
         if (dto.getGpsData() == null) {
             return null;
         }
-
         GPSDataDTO gps = dto.getGpsData();
-
-        String movementStatus;
-
-        Boolean ignitionOn = dto.getAlarmStatus() != null ? dto.getAlarmStatus().getIgnitionON() : false;
-
-        if (Boolean.TRUE.equals(ignitionOn)) {
-
-            if (gps.getSpeed() != null && gps.getSpeed() > 5.0) {
-                movementStatus = "MOVING";
-            } else {
-                movementStatus = "IDLE";
-            }
-
-        } else {
-            movementStatus = "STOPPED";
-        }
 
         return DeviceGPSData.builder()
                 .deviceId(dto.getDeviceId())
@@ -148,7 +132,7 @@ public class EntityMapper {
                 .noOfSatellites(gps.getNoOfSatellites())
                 .pdop(gps.getPdop())
                 .hdop(gps.getHdop())
-                .movementStatus(movementStatus)
+                .fleetState(calculateFleetState(dto))
                 .gpsDate(gps.getDate())
                 .gpsTime(gps.getTime())
                 .packetTimestamp(dto.getPacketTimeStamp())
@@ -203,6 +187,25 @@ public class EntityMapper {
                 .packetTimestamp(dto.getPacketTimeStamp())
                 .serverTimestamp(LocalDateTime.now())
                 .build();
+    }
+
+    private String calculateFleetState(DeviceDataDTO dto) {
+        if (dto.getGpsData() == null) {
+            return null;
+        }
+        Boolean ignitionOn = dto.getAlarmStatus() != null ? dto.getAlarmStatus().getIgnitionON() : false;
+
+        if (Boolean.TRUE.equals(ignitionOn)) {
+            Double speed = dto.getGpsData().getSpeed();
+
+            if (speed != null && speed > 5.0) {
+                return "MOVING";
+            }
+
+            return "IDLE";
+        }
+
+        return "STOPPED";
     }
 
 }

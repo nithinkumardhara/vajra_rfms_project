@@ -5,15 +5,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class DashboardSummaryDTO {
+public class FleetDistanceDTO {
 
-    private Long communicating;
-    private Long nonCommunicating;
-    private Long moving;
-    private Long stopped;
-    private Long idle;
+    private LocalDate date;
+    private Double distance;
 }

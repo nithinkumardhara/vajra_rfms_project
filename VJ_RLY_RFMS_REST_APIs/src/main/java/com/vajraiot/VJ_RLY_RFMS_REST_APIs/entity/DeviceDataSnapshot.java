@@ -42,8 +42,8 @@ public class DeviceDataSnapshot {
     @Column(name = "heading")
     private Double heading;
 
-    @Column(name = "movement_status", length = 20)
-    private String movementStatus; // MOVING, IDLE, STOPPED, HIBERNATE
+    @Column(name = "fleet_state", length = 20)
+    private String fleetState; // MOVING, IDLE, STOPPED
 
     @Column(name = "fuel_level")
     private Double fuelLevel;
