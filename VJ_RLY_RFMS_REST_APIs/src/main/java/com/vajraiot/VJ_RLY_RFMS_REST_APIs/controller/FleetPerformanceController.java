@@ -41,9 +41,10 @@ public class FleetPerformanceController {
     @GetMapping("/distance-summary")
     public ResponseEntity<FleetPerformanceDTO> getFleetDistanceSummary(@RequestParam String deviceId,
                                                                        @RequestParam String filter,          // WEEK | MONTH
+                                                                       @RequestParam(required = false) LocalDate date,
                                                                        @RequestParam(required = false) Integer year,
                                                                        @RequestParam(required = false) Integer month) {
 
-        return ResponseEntity.ok(fleetPerformanceService.getFleetDistanceSummary(deviceId, filter, year, month));
+        return ResponseEntity.ok(fleetPerformanceService.getFleetDistanceSummary(deviceId, filter, date, year, month));
     }
 }

@@ -6,19 +6,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalTime;
-
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class FleetRunHoursDTO {
+public class VehicleFuelSummaryDTO {
 
-    private String deviceId;
-    private LocalTime movingRunHours;
-    private LocalTime stoppedRunHours;
-    private LocalTime idleRunHours;
-    private Double totalDistance;
-    private String period; // Range
+    private String deviceId; // each vehicle fuel summary for week and month
+    private Double fuelConsumption;
+    private Double fuelFill;
+    private Double fuelTheft;
+    private Double avgMileage;
 }

@@ -20,6 +20,10 @@ import org.springframework.context.annotation.Configuration;
                         url = "http://localhost:8889"
                 ),
                 @Server(
+                        description = "API's ENV",
+                        url = "http://192.168.1.26:8889"
+                ),
+                @Server(
                         description = "Web server ENV",
                         url = "http://192.168.1.14:8889"
                 )

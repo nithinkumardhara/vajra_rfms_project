@@ -36,8 +36,9 @@ public class FleetPerformanceService {
                 break;
 
             case "WEEK":
-                from = LocalDate.now().minusDays(6).atStartOfDay();
-                to = LocalDate.now().atTime(LocalTime.MAX);
+                date = (date != null) ? date : LocalDate.now();
+                from = date.minusDays(6).atStartOfDay();
+                to = date.atTime(LocalTime.MAX);
                 break;
 
             case "MONTH":
@@ -64,7 +65,6 @@ public class FleetPerformanceService {
 
         // All Vehicles
         List<String> deviceIds = deviceRepo.findAllDistinctDeviceIds();
-
         for (String id : deviceIds) {
             List<DevicePacketData> packets = devicePacketDataRepo.findByDeviceIdAndPacketTimestampBetweenOrderByPacketTimestampAsc(id, from, to);
             if (!packets.isEmpty()) {
@@ -259,7 +259,7 @@ public class FleetPerformanceService {
 
 
     // Get Distance summary for Week | Month
-    public FleetPerformanceDTO getFleetDistanceSummary(String deviceId, String filter, Integer year, Integer month) {
+    public FleetPerformanceDTO getFleetDistanceSummary(String deviceId, String filter, LocalDate date,  Integer year, Integer month) {
         if (deviceId == null || deviceId.isBlank()) {
             throw new IllegalArgumentException("deviceId is required");
         }
@@ -270,9 +270,9 @@ public class FleetPerformanceService {
 
         switch (filter.toUpperCase()) {
             case "WEEK" -> {
-                LocalDate today = LocalDate.now();
-                from = today.minusDays(6).atStartOfDay();
-                to   = today.atTime(LocalTime.MAX);
+                date = (date != null) ? date : LocalDate.now();
+                from = date.minusDays(6).atStartOfDay();
+                to   = date.atTime(LocalTime.MAX);
                 reportRange = from.toLocalDate() + " - " + to.toLocalDate();
             }
 
@@ -366,5 +366,4 @@ public class FleetPerformanceService {
     private static double round2(double v) {
         return Math.round(v * 100.0) / 100.0;
     }
-
 }

@@ -9,16 +9,19 @@ import lombok.NoArgsConstructor;
 import java.time.LocalTime;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class FleetRunHoursDTO {
+public class FuelEventDTO {
 
     private String deviceId;
-    private LocalTime movingRunHours;
-    private LocalTime stoppedRunHours;
-    private LocalTime idleRunHours;
-    private Double totalDistance;
-    private String period; // Range
+    private String eventType;   // Fill, Theft, Low
+    private LocalTime eventTime;
+    private Double fuelVolume;
+    private Double latitude;
+    private Double longitude;
+    private Double startFuelLevel;
+    private Double endFuelLevel;
+//    private Double eventDuration;
 }

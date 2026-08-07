@@ -10,5 +10,5 @@ public interface DevicePacketDataRepo extends JpaRepository<DevicePacketData, Lo
     
     List<DevicePacketData> findByDeviceIdAndPacketTimestampBetweenOrderByPacketTimestampAsc(String deviceId, LocalDateTime from, LocalDateTime to);
 
-//    List<DevicePacketData> findByPacketTimestampBetweenOrderByDeviceIdAscPacketTimestampAsc(LocalDateTime from, LocalDateTime to);
+    List<DevicePacketData> findByDeviceIdInAndPacketTimestampBetweenOrderByDeviceIdAscPacketTimestampAsc(List<String> deviceIds, LocalDateTime from, LocalDateTime to);
 }

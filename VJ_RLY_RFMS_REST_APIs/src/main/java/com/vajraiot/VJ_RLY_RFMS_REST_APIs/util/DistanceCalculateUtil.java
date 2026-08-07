@@ -9,9 +9,7 @@ public class DistanceCalculateUtil {
     private static final double MIN_SPEED_KMH = 5.0;
     private static final double MIN_SEGMENT_DISTANCE_KM = 0.20;
 
-    private DistanceCalculateUtil() {
-        // Prevent instantiation
-    }
+    private DistanceCalculateUtil() { }
 
 //     Calculates total travel distance. Returns distance in KM
     public static Double calculateDistance(List<DeviceGPSData> gpsDataList) {
@@ -23,7 +21,6 @@ public class DistanceCalculateUtil {
         double totalDistance = 0.0;
 
         for (int i = 1; i < gpsDataList.size(); i++) {
-
             DeviceGPSData previous = gpsDataList.get(i - 1);
             DeviceGPSData current = gpsDataList.get(i);
 
@@ -36,7 +33,6 @@ public class DistanceCalculateUtil {
             if (speed == null || speed < MIN_SPEED_KMH) {
                 continue;
             }
-
             double segmentDistance = haversineDistance(
                     previous.getLatitude(),
                     previous.getLongitude(),
@@ -54,7 +50,7 @@ public class DistanceCalculateUtil {
     }
 
 //    Haversine formula, Returns distance in KM.
-    private static double haversineDistance(double lat1, double lon1, double lat2, double lon2) {
+    public static double haversineDistance(double lat1, double lon1, double lat2, double lon2) {
         double dLat = Math.toRadians(lat2 - lat1);
         double dLon = Math.toRadians(lon2 - lon1);
 
